@@ -1,4 +1,6 @@
 import csv
+
+
 def read():
     try:
         file_read = open('directory_enquiries.csv', 'r', encoding='UTF-8')
@@ -6,6 +8,7 @@ def read():
         return file_reader
     except FileNotFoundError:
         return print('Скорее всего файла-справочника не существует \n')
+
 
 def show_all():
     file = read()
@@ -28,18 +31,19 @@ def add_new():
         file.write(','.join(new_pers))
         file.writelines('\n')
 
+
 def search():
     file = read()
     search_mode = input('Хотите поиск по полям, жмите 1, \nЕсли общий, то жмакайте 2')
     if search_mode in ('1', 1):
         print('По какому полю хотите найти?')
         search_column = input('1 - ID персонажа, 2 - Имя персонажа, 3 - Номер телефона, 4 - Внезапно Комментарий')
-        if search_column in [1, 2, 3, 4, '1','2','3','4']:
+        if search_column in [1, 2, 3, 4, '1', '2', '3', '4']:
             search_word = input('Слово для поиска:')
             for item in file:
-                    if search_word in item[int(search_column)-1]:
-                        print(item)
-                        break
+                if search_word in item[int(search_column) - 1]:
+                    print(item)
+                    break
             else:
                 print('Такого слова в справочнике нет \n')
         else:
@@ -48,13 +52,14 @@ def search():
     if search_mode in ('2', 2):
         search_word = input('Какое слово ищете?')
         for row in file:
-                if search_word in row:
-                    print(row)
-                    break
+            if search_word in row:
+                print(row)
+                break
         else:
             print('Такого слова в справочнике нет')
     else:
         print('Вы что-то не то нажали, давайте по-новой \n')
+
 
 def update():
     update_info = input('Введите Имя или ID персонажа, в которое бы хотели внести изменения')
@@ -74,14 +79,16 @@ def update():
     else:
         print('Вы что-то не то нажали, давайте по-новой \n')
 
+
 def delete():
     delete_info = input('Введите имя персонажа или ID, которого хотите удалить ')
     file_data = list(read())
     with open('directory_enquiries.csv', 'w', newline='', encoding='UTF-8') as file_delete:
         writer = csv.writer(file_delete)
         for row in file_data:
-                if str(delete_info) != row[0] and str(delete_info) != row[1]:
-                    writer.writerow(row)
+            if str(delete_info) != row[0] and str(delete_info) != row[1]:
+                writer.writerow(row)
+
 
 def save():
     save_name = input('Под каким именем сохранить?')

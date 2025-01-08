@@ -1,5 +1,6 @@
 from moduls import actions
 
+
 def main():
     print('Что бы Вы хотели сделать? \nВведите номер необходимого действия:')
     while True:
@@ -26,7 +27,6 @@ def main():
         else:
             print('Введите одну из предложенных команд')
 
+
 if __name__ == '__main__':
     main()
-
-
