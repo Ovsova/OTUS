@@ -3,27 +3,22 @@ from moduls import actions
 
 def main():
     print('Что бы Вы хотели сделать? \nВведите номер необходимого действия:')
-    while True:
+    input_number = 0
+    while input_number != '7':
         input_number = input("1 - Показать все контакты \n2 - Создать новый контакт \n3 - Найти контакт \n4 - "
                              "Изменить контакт \n5 - Удалить контакт \n6 - Сохранить файл \n7 - Выход")
-        if input_number in ('1', 1):
-            print('1')
+        if input_number == '1':
             actions.show_all()
-        if input_number in ('2', 2):
-            print('2')
+        elif input_number == '2':
             actions.add_new()
-        if input_number in ('3', 3):
-            print('3')
+        elif input_number == '3':
             actions.search()
-        if input_number in ('4', 4):
-            print('4')
+        elif input_number == '4':
             actions.update()
-        if input_number in ('5', 5):
+        elif input_number == '5':
             actions.delete()
-        if input_number in ('6', 6):
+        elif input_number == '6':
             actions.save()
-        if input_number in ('7', 7):
-            exit()
         else:
             print('Введите одну из предложенных команд')
 

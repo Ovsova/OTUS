@@ -2,6 +2,7 @@ import csv
 
 
 def read():
+    """чтение файла"""
     try:
         file_read = open('directory_enquiries.csv', 'r', encoding='UTF-8')
         file_reader = csv.reader(file_read, dialect='excel', delimiter=',')
@@ -11,6 +12,7 @@ def read():
 
 
 def show_all():
+    """Отображение всего содержимого справочника"""
     file = read()
     for line in file:
         if len(line) == 0:
@@ -20,6 +22,7 @@ def show_all():
 
 
 def add_new():
+    """добавить новый контакт в справочник"""
     file = read()
     pers_count = sum(1 for row in file)
     with open('directory_enquiries.csv', 'a', encoding='UTF-8') as file:
@@ -33,6 +36,7 @@ def add_new():
 
 
 def search():
+    """Поиск информации в справочнике"""
     file = read()
     search_mode = input('Хотите поиск по полям, жмите 1, \nЕсли общий, то жмакайте 2')
     if search_mode in ('1', 1):
@@ -49,7 +53,7 @@ def search():
         else:
             print('Где-то Вы ошиблись с цифрой, попробуем еще')
 
-    if search_mode in ('2', 2):
+    elif search_mode in ('2', 2):
         search_word = input('Какое слово ищете?')
         for row in file:
             if search_word in row:
@@ -62,6 +66,7 @@ def search():
 
 
 def update():
+    """Обновление информации в справочнике"""
     update_info = input('Введите Имя или ID персонажа, в которое бы хотели внести изменения')
     file_data = list(read())
     update_column = input('Вы хотели бы изменить: 1 - Имя, 2 - Телефон, 3 - Комментарий ?')
@@ -81,6 +86,7 @@ def update():
 
 
 def delete():
+    """Удаление контакта в справочнике"""
     delete_info = input('Введите имя персонажа или ID, которого хотите удалить ')
     file_data = list(read())
     with open('directory_enquiries.csv', 'w', newline='', encoding='UTF-8') as file_delete:
@@ -91,6 +97,7 @@ def delete():
 
 
 def save():
+    """сохранение файла со справочником"""
     save_name = input('Под каким именем сохранить?')
     file = read()
     with open(f'{save_name}.csv', 'w', newline='', encoding='UTF-8') as file_save:
