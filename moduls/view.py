@@ -3,12 +3,12 @@ import csv
 
 class DirectoryData:
     """чтение файла"""
-
-    def read(self):
+    @classmethod
+    def read(cls, filepath):
         try:
-            print('4', )
-            file_read = open('directory_enquiries.csv', 'r', encoding='UTF-8')
-            file_reader = csv.reader(file_read, dialect='excel', delimiter=',')
+
+            file_read = open(filepath, 'r', encoding='UTF-8')
+            file_reader = list(csv.reader(file_read, dialect='excel', delimiter=','))
             for line in file_reader:
                 if len(line) == 0:
                     print('Файл пуст \n')

@@ -7,14 +7,15 @@ from moduls import exceptions
 class FileActions:
 
     def show_all(data):
+        data_list = []
         """Отображение всего содержимого справочника"""
-        print(data)
         for line in data:
+            data_list.append(line)
             if len(line) != 0:
                 print(line[1:])
             else:
-                # print('line', line)
                 raise exceptions.MyExceptions('Empty File')
+        return data_list
 
     def add_new(data):
         """добавить новый контакт в справочник"""
@@ -35,7 +36,7 @@ class FileActions:
         if search_mode == '1':
             print('По какому полю хотите найти?')
             search_column = input('1 - ID персонажа, 2 - Имя персонажа, 3 - Номер телефона, 4 - Внезапно Комментарий')
-            if search_column in [1, 2, 3, 4, '1', '2', '3', '4']:
+            if search_column in ['1', '2', '3', '4']:
                 search_word = input('Слово для поиска:')
                 for item in data:
                     if search_word in item[int(search_column) - 1]:

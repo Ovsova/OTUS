@@ -3,11 +3,12 @@ from moduls.view import DirectoryData as DD
 from moduls.controller import FileActions as Action
 
 
-class InOutData:
+class InOutData(DD):
     """Выбор функционала справочника"""
 
     def __init__(self):
         self._value = []
+
 
     @property
     def value(self):
