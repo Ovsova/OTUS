@@ -7,6 +7,9 @@ from moduls.exceptions import MyExceptions
 import os
 import atexit
 
+"""Тестирование реализовано разлисными вариациями"""
+
+
 file_test = 'test.csv'
 file_test1 = 'test1.csv'
 file_test2 = 'test2.csv'
