@@ -6,7 +6,6 @@ class DirectoryData:
     @classmethod
     def read(cls, filepath):
         try:
-
             file_read = open(filepath, 'r', encoding='UTF-8')
             file_reader = list(csv.reader(file_read, dialect='excel', delimiter=','))
             for line in file_reader:

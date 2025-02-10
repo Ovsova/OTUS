@@ -1,5 +1,6 @@
 import csv
 from moduls import exceptions
+from moduls.view import DirectoryData as DD
 
 """Операции со справочником"""
 
@@ -17,11 +18,11 @@ class FileActions:
                 raise exceptions.MyExceptions('Empty File')
         return data_list
 
-    def add_new(data):
+    def add_new(data, filename):
         """добавить новый контакт в справочник"""
         # file = read()
         pers_count = sum(1 for row in data)
-        with open('directory_enquiries.csv', 'a', encoding='UTF-8') as file:
+        with open(filename, 'a', encoding='UTF-8') as file:
             new_pers_long = str(pers_count + 1)
             new_pers_name = input('Введите Имя')
             new_pers_number = input('Введите номер')
@@ -58,7 +59,7 @@ class FileActions:
         else:
             raise exceptions.MyExceptions('Try again')
 
-    def update(data):
+    def update(data, filename):
         """Обновление информации в справочнике"""
         update_info = input('Введите Имя или ID персонажа, в которое бы хотели внести изменения')
         cur_data = list(data)
@@ -71,17 +72,17 @@ class FileActions:
                     break
             else:
                 raise exceptions.MyExceptions('Not Found')
-            with open('directory_enquiries.csv', 'w', newline='', encoding='UTF-8') as file_update:
+            with open(filename, 'w', newline='', encoding='UTF-8') as file_update:
                 writer = csv.writer(file_update)
                 writer.writerows(cur_data)
         else:
             raise exceptions.MyExceptions('Try again')
 
-    def delete(data):
+    def delete(data,filename):
         """Удаление контакта в справочнике"""
         delete_info = input('Введите имя персонажа или ID, которого хотите удалить ')
         cur_data = list(data)
-        with open('directory_enquiries.csv', 'w', newline='', encoding='UTF-8') as file_delete:
+        with open(filename, 'w', newline='', encoding='UTF-8') as file_delete:
             writer = csv.writer(file_delete)
             for row in cur_data:
                 if str(delete_info) != row[0] and str(delete_info) != row[1]:
